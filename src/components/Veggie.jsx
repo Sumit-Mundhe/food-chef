@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import { Splide,SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/splide/dist/css/splide.min.css';
+import { Link } from 'react-router-dom';
 
 function Veggie() {
     const[veggie,setVeggie]=useState([])
@@ -40,11 +41,13 @@ function Veggie() {
             {veggie.map((recipe)=>{
                 return(
                 <SplideSlide key={recipe.id}>
+                <Link to={"/recipe/"+recipe.id}>
                 <Card key={recipe.id}>
                     <p>{recipe.title}</p>
                     <img src={recipe.image} alt={recipe.title} />
                     <Gradient />
                 </Card>
+                </Link>
                 </SplideSlide>)
             })}
         </Splide>
