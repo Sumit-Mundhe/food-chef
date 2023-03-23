@@ -5,7 +5,9 @@
     font-family: 'Poppins', sans-serif;
 }
 body{
-    margin: 0% 15%;
+    margin: 0% 8%;
+    /* background: no-repeat fixed radial-gradient(rgb(243, 242, 238),rgba(254, 173, 123, 0.951)); */
+    background-image: url("bg2.jpg");
 }
 h4{
     font-size: 1rem;
@@ -16,4 +18,9 @@ h3{
     color: rgb(56,56,56);
     line-height: 2.5rem;
     margin: 2rem 0rem;
+    font-weight: 900;
+    text-shadow: 0 0 10px white;
+}
+a{
+    text-decoration: none;
 }

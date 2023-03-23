@@ -40,11 +40,15 @@ const SLink = styled(NavLink)`
     border-radius: 50%;
     margin-right: 2rem;
     text-decoration: none;
-    background: linear-gradient(35deg, #494949, #313131);
+    background: linear-gradient(55deg, #dad6d619, #008000b3, #045516d2);
     width: 6rem;
     height: 6rem;
     cursor: pointer;
     transform: scale(0.8);
+    box-shadow: 3px 5px 10px rgba(48, 47, 47, 0.5);
+    backdrop-filter: blur(3px);
+    border-bottom: 3px solid rgba(254, 252, 252, 0.892);
+    border-right: 3px solid rgba(254, 252, 252, 0.892);
 
     h4{
         color: white;
@@ -55,7 +59,9 @@ const SLink = styled(NavLink)`
         font-size: 1.5rem;
     }
     &.active{
-        background: linear-gradient(to right,#f27121,#e94057);
+        background: linear-gradient(to right,#21f244,#03590347);
+        box-shadow: 7px 7px 15px rgba(0, 0, 0, 0.385);
+        transform: translate(0.5rem);
 
         svg{
             color: white;
