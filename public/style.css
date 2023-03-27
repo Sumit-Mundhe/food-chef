@@ -24,3 +24,13 @@ h3{
 a{
     text-decoration: none;
 }
+
+.ingredient-li{
+    display: flex;
+    gap: 1.5rem;
+    padding-bottom: 1rem;
+}
+.ingredient-img{
+    width: 100px;
+    height: 100px;
+}

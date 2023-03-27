@@ -8,9 +8,10 @@ function Searched() {
     let params = useParams()
 
     const getSearched = async (name) =>{
-        const data = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${name}`); 
+        const data = await fetch(`https://api.edamam.com/search?app_id=${process.env.REACT_APP_EDAMAM_APP_ID}&app_key=${process.env.REACT_APP_EDAMAM_APP_KEY}&q=${name}&from=0&to=9`);
+ 
         const recipes = await data.json();
-        setSearchedRecipes(recipes.results)
+        setSearchedRecipes(recipes.hits)
     }
 
     useEffect(()=>{
@@ -25,11 +26,12 @@ function Searched() {
     transition={{duration: 0.5}}
     >
         {searchedRecipes.map((item)=>{
+            const id = item.recipe.uri.replace("http://www.edamam.com/ontologies/edamam.owl#recipe_", "");
             return(
-                <Link to={"/recipe/" + item.id}>
-                    <Card key={item.id}>
-                        <img src={item.image} alt="" />
-                        <h4>{item.title}</h4>
+                <Link to={"/recipe/" + id}>
+                    <Card key={id}>
+                        <img src={item.recipe.image} alt="" />
+                        <h4>{item.recipe.label}</h4>
                     </Card>
                 </Link>
             )

@@ -12,19 +12,13 @@ function Veggie() {
     },[]);
 
     const getVeggie = async() => {
-        const check = localStorage.getItem("veggie");
-        
-        if(check){
-            setVeggie(JSON.parse(check));
-        }
-        else{
-            const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9`);
+            const api = await fetch(`https://api.edamam.com/search?q=vegetarian&app_id=${process.env.REACT_APP_EDAMAM_APP_ID}&app_key=${process.env.REACT_APP_EDAMAM_APP_KEY}&from=0&to=9`);
             const data = await api.json();
             
-            localStorage.setItem("veggie",JSON.stringify(data.recipes));
-            setVeggie(data.recipes);
+
+            setVeggie(data.hits);
+            // console.log(data.hits);
             // console.log(data.recipes);
-        }
     };
 
 
@@ -39,12 +33,13 @@ function Veggie() {
             gap:"0rem",
         }}>
             {veggie.map((recipe)=>{
+                const id = recipe.recipe.uri.replace("http://www.edamam.com/ontologies/edamam.owl#recipe_", "");
                 return(
-                <SplideSlide  key={recipe.id}>
-                <Link to={"/recipe/"+recipe.id}>
-                <Card key={recipe.id}>
-                    <p>{recipe.title}</p>
-                    <img src={recipe.image} alt={recipe.title} />
+                <SplideSlide  key={id}>
+                <Link to={"/recipe/"+id}>
+                <Card key={id}>
+                    <p>{recipe.recipe.label}</p>
+                    <img src={recipe.recipe.image} alt={recipe.recipe.label} />
                     <Gradient />
                 </Card>
                 </Link>

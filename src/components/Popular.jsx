@@ -7,25 +7,21 @@ import { Link } from 'react-router-dom';
 function Popular() {
     const[popular,setPopular]=useState([])
 
+    const getPopular = async() => {
+            const api = await fetch(`https://api.edamam.com/search?q=random&app_id=${process.env.REACT_APP_EDAMAM_APP_ID}&app_key=${process.env.REACT_APP_EDAMAM_APP_KEY}&from=0&to=9&random=true`);
+            const data = await api.json();
+            
+            
+            setPopular(data.hits);
+            // console.log(popular);
+            // console.log(data.hits);
+            // console.log(data.recipes);
+    };
+    
     useEffect(()=>{
         getPopular();
     },[]);
 
-    const getPopular = async() => {
-        const check = localStorage.getItem("popular");
-        
-        if(check){
-            setPopular(JSON.parse(check));
-        }
-        else{
-            const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9&tags=vegetarian`);
-            const data = await api.json();
-            
-            localStorage.setItem("popular",JSON.stringify(data.recipes));
-            setPopular(data.recipes);
-            // console.log(data.recipes);
-        }
-    };
 
 
   return (
@@ -39,12 +35,13 @@ function Popular() {
             gap:"0rem",
         }} >
             {popular.map((recipe)=>{
+                const id = recipe.recipe.uri.replace("http://www.edamam.com/ontologies/edamam.owl#recipe_", "");
                 return(
-                <SplideSlide key={recipe.id}>
-                <Link to={"/recipe/"+recipe.id}>
-                <Card key={recipe.id}>
-                    <p>{recipe.title}</p>
-                    <img src={recipe.image} alt={recipe.title} />
+                <SplideSlide key={id}>
+                <Link to={"/recipe/"+id}>
+                <Card key={id}>
+                    <p>{recipe.recipe.label}</p>
+                    <img src={recipe.recipe.image} alt={recipe.recipe.label} />
                     <Gradient />
                 </Card>
                 </Link>

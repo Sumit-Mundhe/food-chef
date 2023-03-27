@@ -3,20 +3,23 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
+
 function Recipe() {
     const[details, setDetails] = useState({});
-    const[activeTab,setActiveTab] = useState("instructions")
+    const[activeTab,setActiveTab] = useState("details")
     let params = useParams()
 
-    const fetchDetails = async (name) =>{
-        const data = await fetch(`https://api.spoonacular.com/recipes/${params.name}/information?apiKey=${process.env.REACT_APP_API_KEY}`); 
+    const fetchDetails = async (key) =>{
+        const data = await fetch(`https://api.edamam.com/api/recipes/v2/${key}?type=public&app_id=${process.env.REACT_APP_EDAMAM_APP_ID}&app_key=${process.env.REACT_APP_EDAMAM_APP_KEY}`);
+          
         const detailData = await data.json();
+        console.log("detaildata",detailData);
         setDetails(detailData)
     }
-
+ 
     useEffect(()=>{
-        fetchDetails(params.name)
-    },[params.name])
+        fetchDetails(params.key)
+    },[params.key])
 
   return (
     <DetailWrapper
@@ -25,30 +28,51 @@ function Recipe() {
     exit={{opacity: 0}}
     transition={{duration: 0.5}}
     >
+        {details.recipe && (
         <div>
-            <h2>{details.title}</h2>
-            <img src={details.image} alt="" />
+            <h2>{details.recipe.label}</h2>
+            <img src={details.recipe.image} alt="" />
         </div>
+        )}
         <Info>
             <div className="buttons">
-                <Button className={activeTab==="instructions"?'active':''} onClick={()=>{setActiveTab("instructions")}}>Instructions</Button>
+                <Button className={activeTab==="details"?'active':''} onClick={()=>{setActiveTab("details")}}>Details</Button>
                 <Button className={activeTab==="ingredients"?'active':''} onClick={()=>{setActiveTab("ingredients")}}>Ingredients</Button>
             </div>
-            {activeTab === "instructions" && (
+            {activeTab === "details" && (
             <div>
-                <h3 dangerouslySetInnerHTML={{__html: details.summary}} ></h3>
-                <h3 dangerouslySetInnerHTML={{__html: details.instructions}} ></h3>
+                {/* <h3>Calories : {details.recipe.calories}</h3> */}
+                <h3>It is an {details.recipe?.cuisineType[0]}</h3>
+                <h3>Dish type : {details.recipe?.dishType[0]}</h3>
+                <ul>
+                    <h2>Nutrients : </h2>
+                    <li>{details.recipe?.totalNutrients.ENERC_KCAL.label} : {Math.floor(details.recipe?.totalNutrients.ENERC_KCAL.quantity)} {details.recipe?.totalNutrients.ENERC_KCAL.unit}</li>
+                    <li>{details.recipe?.totalNutrients.FAT.label} : {Math.floor(details.recipe?.totalNutrients.FAT.quantity)} {details.recipe?.totalNutrients.FAT.unit}</li>
+                    <li>{details.recipe?.totalNutrients.PROCNT.label} : {Math.floor(details.recipe?.totalNutrients.PROCNT.quantity)} {details.recipe?.totalNutrients.PROCNT.unit}</li>
+                    <li>{details.recipe?.totalNutrients.CHOCDF.label} : {Math.floor(details.recipe?.totalNutrients.CHOCDF.quantity)} {details.recipe?.totalNutrients.CHOCDF.unit}</li>
+                </ul>
+                <a href={details.recipe?.url} target="_blank" rel="noopener noreferrer">Diretions</a>
+                {/* <h3 dangerouslySetInnerHTML={{__html: details.summary}} ></h3>
+                <h3 dangerouslySetInnerHTML={{__html: details.instructions}} ></h3> */}
+                {/* <RecipeDirections recipeUrl="https://www.seriouseats.com/tartufi-chocolate-covered-ice-cream-recipe" /> */}
             </div>
             )}
             {activeTab === "ingredients" && (
             <ul>
-                {details.extendedIngredients ? details.extendedIngredients.map(({id,original}) => 
-                     (<li key={id}>{original}</li>)
-                ): "Loading..."}
+                {details.recipe?.ingredients ? details.recipe?.ingredients.map((ingredient,id) => {
+                        console.log(id,ingredient);
+                     return (
+                        <li className='ingredient-li' key={id}>
+                            <img className='ingredient-img' src={ingredient.image} alt="" />
+                            <h3>{ingredient.text}</h3>
+                        </li>
+                     )
+                    
+                }): "Loading..."}
             </ul>
             )}
         </Info>
-    </DetailWrapper>
+          </DetailWrapper>
   )
 }
 
