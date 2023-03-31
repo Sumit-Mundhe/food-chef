@@ -17,14 +17,14 @@ function Search() {
     <FormStyle onSubmit={submitHandler} >
         <div>
             <FaSearch></FaSearch>
-            <input onChange={(e)=>{setInput(e.target.value)}} type="text" value={input} placeholder="Type a keyword for your recipe..."/>
+            <input onChange={(e)=>{setInput(e.target.value)}} type="text" value={input} placeholder="Search recipe..."/>
         </div>
     </FormStyle>
   )
 }
 
 const FormStyle = styled.form`
-    margin: 0rem 20rem;
+    margin: 0rem 1rem;
     div{
         position: relative;
         width: 100%;
@@ -32,8 +32,8 @@ const FormStyle = styled.form`
 
     input{
         border: none;
-        background: linear-gradient(35deg,#5e5b5b40, #615f5f60);
-        font-size: 1.5rem;
+        background: linear-gradient(35deg,#bbb8b840, #c5c0c05f);
+        font-size: 1.2rem;
         color: white;
         padding: 1rem 3rem;
         border: 3px solid rgba(247, 242, 242, 0.697);
@@ -47,7 +47,7 @@ const FormStyle = styled.form`
     svg{
         position: absolute;
         top: 50%;
-        left: 0%;
+        left: -5%;
         transform: translate(100%, -50%);
         color: white;
     }

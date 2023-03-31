@@ -14,11 +14,7 @@ function Veggie() {
     const getVeggie = async() => {
             const api = await fetch(`https://api.edamam.com/search?q=vegetarian&app_id=${process.env.REACT_APP_EDAMAM_APP_ID}&app_key=${process.env.REACT_APP_EDAMAM_APP_KEY}&from=0&to=9`);
             const data = await api.json();
-            
-
             setVeggie(data.hits);
-            // console.log(data.hits);
-            // console.log(data.recipes);
     };
 
 
@@ -27,7 +23,8 @@ function Veggie() {
         <h3>Vegetarian Dishes</h3>
         <Splide className='splide' options={{
             perPage:3,
-            arrows:false,
+            arrows:true,
+            interval:2000,
             pagination:false,
             drag:"free",
             gap:"0rem",
@@ -51,18 +48,21 @@ function Veggie() {
 }
 
 const Wrapper = styled.div`
-    margin : 1rem 0rem;
+    margin : 2.5rem 0rem;
+    background-color: #3bda48ac;  
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    box-shadow: 5px 10px 18px #1e1e1e21;
+    border-right: 8px solid #eaffec;
+    border-bottom: 8px solid #eaffec;
     .splide{
         padding: 1rem;
-        background: linear-gradient(to right, #0e3a0002, #1b6c2e6f, #023a1e02);
         border-radius: 2rem;
     }
     h3{
         font-size: 2rem;
-        color: #036303;
-        text-shadow: 
-        0 0 15px rgba(11, 180, 67, 0.626),
-        2px 2px 1px rgba(255, 255, 255, 0.79);
+        color: #ffffff;
+        text-shadow: 0 0 15px #3740058e;
     }
 `;
 

@@ -4,7 +4,6 @@ import Category from './Category'
 import { BrowserRouter, Link } from 'react-router-dom'
 import Search from './Search'
 import styled from 'styled-components'
-import { GiKnifeFork} from 'react-icons/gi'
 import { SiCodechef } from 'react-icons/si'
 
 function App() {
@@ -17,10 +16,10 @@ function App() {
             <SiCodechef className='chef' />
             <h4 >FoodChef</h4>
           </Logo>
-        </Nav>
-        <Search />
-      </div>
         <Category />
+        <Search />
+        </Nav>
+      </div>
         <Pages />
       </BrowserRouter>
     </div>
@@ -28,45 +27,49 @@ function App() {
 }
 
 const mystyle = {
-  background:"linear-gradient(35deg,#58d5795d,rgba(242, 240, 244, 0.389)",
-  margin: "2rem 0rem 1rem 0rem",
-  padding:"0rem 1rem 2rem 0rem",
-  borderRadius:"2.5rem",
-  boxShadow: "3px 5px 18px #00000064",
-  backdropFilter: "blur(4px)",
-  borderBottom: "3px solid rgba(248, 244, 244, 0.7)",
-  borderRight: "3px solid rgba(248, 244, 244, 0.7)"
-  // backgroundImage: 'url("food.jpg")'
+  margin: "0rem -7.5rem",
+  paddingBottom:"3rem",
+  borderRadius:"0rem",
+  
 }
 
 const Logo = styled(Link)`
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   text-decoration: none;
-  font-size: 3rem;
+  font-size: 1rem;
   font-weight: 800;
+  padding: 0 1rem;
 
   .chef{
-    font-size: 10rem;
-    color: #3e6f0d;
-    filter: drop-shadow(0px 0px 8px rgb(73, 251, 150));
+    font-size: 4rem;
+    color: #40513B;
+    filter: drop-shadow(3px 0px 1px rgb(73, 251, 150));
   }
   h4{
-    color: #3e6f0d;
-    font-size:3rem;
+    color: #40513B;
+    font-size:2.5rem;
     font-weight: 900;
-    text-shadow: 0px 0px 8px rgb(73, 251, 150);
+    text-shadow: 0.3rem 0px 4px rgb(73, 251, 150);
   }
 `
 
 const Nav = styled.div`
-  padding: 4rem 0rem 2rem 0rem;
+  background-color: #55bc55;
+  border-bottom: 7px solid #f1f7f1c1;
+  box-shadow: 0px 15px 18px #0b4d0b2d;
+  backdrop-filter: blur(100px);
+  padding: 0rem;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  height: 6rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
   svg{
     font-size: 2rem;
   }

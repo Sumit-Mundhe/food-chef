@@ -42,8 +42,13 @@ function Searched() {
 
 const Grid = styled(motion.div)`
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(20rem, 1fr));
+    grid-template-columns: repeat(auto-fit,minmax(15rem, 1fr));
     grid-gap: 3rem;
+    margin : 2.5rem 0rem;
+    background-color: #609966b1;
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    
 `
 
 const Card = styled.div`

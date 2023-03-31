@@ -34,41 +34,35 @@ function Category() {
 const List = styled.div`
     display: flex;
     justify-content: center;
-    margin: 2rem 0rem;
+    margin: 0rem 0rem;
+    
 `
 const SLink = styled(NavLink)`
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: 50%;
-    margin-right: 2rem;
+    margin-right: 0rem;
     text-decoration: none;
-    background: linear-gradient(55deg, #dad6d619, #008000b3, #045516d2);
     width: 6rem;
     height: 6rem;
     cursor: pointer;
-    transform: scale(0.8);
-    box-shadow: 3px 5px 10px rgba(48, 47, 47, 0.5);
-    backdrop-filter: blur(3px);
-    border-bottom: 3px solid rgba(254, 252, 252, 0.892);
-    border-right: 3px solid rgba(254, 252, 252, 0.892);
+    transform: scale(1.1);
 
     h4{
-        color: white;
+        color: #40513B;
         font-size: 0.8rem;
     }
     svg{
-        color: white;
+        color: #40513B;
         font-size: 1.5rem;
     }
     &.active{
-        background: linear-gradient(to right,#21f244,#03590347);
-        box-shadow: 7px 7px 15px rgba(0, 0, 0, 0.385);
         transform: translate(0.5rem);
 
         svg{
             color: white;
+            font-size: 3rem;
         }
         h4{
             color: white;

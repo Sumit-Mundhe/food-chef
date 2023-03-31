@@ -44,8 +44,13 @@ function Cuisine() {
 
 const Grid = styled(motion.div)`
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(20rem, 1fr));
+    grid-template-columns: repeat(auto-fit,minmax(15rem, 1fr));
     grid-gap: 3rem;
+    margin : 2.5rem 0rem;
+    background-color: #45bf51ac;
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    backdrop-filter: blur(100px);
 `
 
 const Card = styled.div`
@@ -61,7 +66,6 @@ const Card = styled.div`
     h4{
         text-align: center;
         padding: 1rem;
-        text-shadow: 0px 0px 8px rgb(242, 163, 60);
     }
 `
 

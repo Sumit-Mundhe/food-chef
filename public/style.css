@@ -6,20 +6,15 @@
 }
 body{
     margin: 0% 8%;
-    /* background: no-repeat fixed radial-gradient(rgb(243, 242, 238),rgba(254, 173, 123, 0.951)); */
-    background-image: url("bg2.jpg");
+    padding-top: 6rem;
+    background-color: #85ff8594;
+    background: radial-gradient(circle, transparent 20%, #86ff85 20%, #86ff85 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #86ff85 20%, #86ff85 80%, transparent 80%, transparent) 20px 20px, linear-gradient(#52a549 1.6px, transparent 1.6px) 0 -0.8px, linear-gradient(90deg, #52a549 1.6px, #86ff85 1.6px) -0.8px 0;
+    background-size: 40px 40px, 40px 40px, 20px 20px, 20px 20px;
 }
 h4{
     font-size: 1rem;
-    color: rgb(56,56,56);
-}
-h3{
-    font-size: 1.5rem;
-    color: rgb(56,56,56);
-    line-height: 2.5rem;
-    margin: 2rem 0rem;
-    font-weight: 900;
-    text-shadow: 0 0 10px white;
+    color: #EDF1D6;
+    text-shadow: 0 0 15px #3740058e;
 }
 a{
     text-decoration: none;
@@ -29,6 +24,7 @@ a{
     display: flex;
     gap: 1.5rem;
     padding-bottom: 1rem;
+    list-style: none;
 }
 .ingredient-img{
     width: 100px;

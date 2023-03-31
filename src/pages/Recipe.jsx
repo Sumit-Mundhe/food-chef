@@ -40,8 +40,7 @@ function Recipe() {
                 <Button className={activeTab==="ingredients"?'active':''} onClick={()=>{setActiveTab("ingredients")}}>Ingredients</Button>
             </div>
             {activeTab === "details" && (
-            <div>
-                {/* <h3>Calories : {details.recipe.calories}</h3> */}
+            <div style={myStyle}>
                 <h3>It is an {details.recipe?.cuisineType[0]}</h3>
                 <h3>Dish type : {details.recipe?.dishType[0]}</h3>
                 <ul>
@@ -52,13 +51,10 @@ function Recipe() {
                     <li>{details.recipe?.totalNutrients.CHOCDF.label} : {Math.floor(details.recipe?.totalNutrients.CHOCDF.quantity)} {details.recipe?.totalNutrients.CHOCDF.unit}</li>
                 </ul>
                 <a href={details.recipe?.url} target="_blank" rel="noopener noreferrer">Diretions</a>
-                {/* <h3 dangerouslySetInnerHTML={{__html: details.summary}} ></h3>
-                <h3 dangerouslySetInnerHTML={{__html: details.instructions}} ></h3> */}
-                {/* <RecipeDirections recipeUrl="https://www.seriouseats.com/tartufi-chocolate-covered-ice-cream-recipe" /> */}
             </div>
             )}
             {activeTab === "ingredients" && (
-            <ul>
+            <ul style={myStyle}>
                 {details.recipe?.ingredients ? details.recipe?.ingredients.map((ingredient,id) => {
                         console.log(id,ingredient);
                      return (
@@ -76,14 +72,20 @@ function Recipe() {
   )
 }
 
+const myStyle = {
+    backgroundColor : "#5c8f43a0",
+    marginLeft : "2rem",
+    padding : "1rem",
+    borderRadius : "1rem",
+}
+
 const DetailWrapper = styled(motion.div)`
-    margin-top: 10rem;
+    margin-top: 1rem;
     margin-bottom: 5rem;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    background-color: #63cb6daf;
+    border-radius: 1.5rem;
+    padding: 1.5rem;
     .active{
         background: linear-gradient(35deg,#494949, #313131);
         color: white;
@@ -93,9 +95,6 @@ const DetailWrapper = styled(motion.div)`
         left : 0;
         box-shadow: 5px 5px 12px #50505063;
         border: 0.25rem solid white;
-        /* width : 100%;
-        height : 100%; */
-        /* object-fit : cover; */
     }
     h2{
         margin-bottom: 2rem;
@@ -103,8 +102,10 @@ const DetailWrapper = styled(motion.div)`
     li{
         font-size: 1.2rem;
         line-height: 2.5rem;
+        list-style: none;
     }
     ul{
+        
         margin-top: 2rem;
     }
     .buttons{
@@ -120,7 +121,7 @@ const Button = styled.button`
     color: #313131;
     background: white;
     border: 2px solid black;
-    margin-right: 2rem;
+    margin: 2rem;
     font-weight: 600;
 `
 
@@ -128,6 +129,7 @@ const Info = styled.div`
     justify-content: center;
     align-items: center;
     text-align: justify;
+    margin-left: 5rem;
 `
 
 export default Recipe
